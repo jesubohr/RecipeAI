@@ -1,10 +1,63 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import Block from "../components/Block.svelte"
+import RecipeContainer from "../components/RecipeContainer.svelte"
 ---
 
 <Layout title="RecipeAI">
   <main class="container flex flex-col gap-4 my-10 mx-auto max-w-xl">
-    <h1>Welcome to <span class="text-gradient">RecipeAI</span></h1>
+    <h1 class="text-center">Welcome to <span class="text-gradient">RecipeAI</span></h1>
+    <Block>
+      <details>
+        <summary class="text-lg"><strong>Instructions</strong></summary>
+        <p>
+          To get started, write down <code>(separated by commas)</code> the <strong
+            >ingredients</strong
+          > you want to include into the <strong>recipe</strong>.
+        </p>
+        <p>
+          For example, <code>1 cup of flour, 1 cup of sugar, 1 cup of milk</code
+          > will possibly generate a recipe for a cake.
+        </p>
+        <br />
+      </details>
+      <details>
+        <summary class="text-lg"><strong>Result</strong></summary>
+        <h3><strong>Ingredients:</strong></h3>
+        <ul>
+          <li>1 cup of flour</li>
+          <li>1 cup of sugar</li>
+          <li>1 cup of milk</li>
+          <li>1/4 cup of oil</li>
+          <li>3 eggs</li>
+          <li>1 tablespoon of vanilla</li>
+          <li>1 tablespoon of salt</li>
+          <li>1 tablespoon of baking powder</li>
+        </ul>
+        <h3><strong>Instructions:</strong></h3>
+        <ol>
+          <li>Preheat oven to 350 degrees F (175 degrees C).</li>
+          <li>Grease and flour two 9 inch round pans.</li>
+          <li>
+            In a large bowl, combine flour, sugar, baking powder and salt.
+          </li>
+          <li>In a separate bowl, combine milk, oil, eggs and vanilla.</li>
+          <li>Stir into dry ingredients just until moistened.</li>
+          <li>Pour batter into prepared pans.</li>
+          <li>
+            Bake for 30 to 35 minutes, or until a toothpick inserted into the
+            center of the cake comes out clean.
+          </li>
+          <li>
+            Cool in pans for 10 minutes, then remove to wire racks to cool
+            completely.
+          </li>
+          <li>When completely cooled, frost with your favorite frosting.</li>
+          <li>Enjoy them!</li>
+        </ol>
+      </details>
+    </Block>
+    <RecipeContainer client:visible />
   </main>
 </Layout>
 
@@ -20,5 +73,26 @@ import Layout from "../layouts/Layout.astro"
     -webkit-text-fill-color: transparent;
     background-size: 400%;
     background-position: 0%;
+  }
+
+  details[open] > *:not(summary) {
+    animation: sweep 0.3s ease-in-out;
+  }
+  summary {
+    cursor: pointer;
+  }
+  summary::marker {
+    color: rgb(var(--accent));
+  }
+
+  @keyframes sweep {
+    0% {
+      opacity: 0;
+      margin-top: -10px;
+    }
+    100% {
+      opacity: 1;
+      margin-top: 0px;
+    }
   }
 </style>
