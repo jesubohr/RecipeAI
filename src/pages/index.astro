@@ -1,0 +1,24 @@
+---
+import Layout from "../layouts/Layout.astro"
+---
+
+<Layout title="RecipeAI">
+  <main class="container flex flex-col gap-4 my-10 mx-auto max-w-xl">
+    <h1>Welcome to <span class="text-gradient">RecipeAI</span></h1>
+  </main>
+</Layout>
+
+<style>
+  h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    margin: 0;
+  }
+  .text-gradient {
+    background-image: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400%;
+    background-position: 0%;
+  }
+</style>
