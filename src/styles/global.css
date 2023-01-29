@@ -11,4 +11,32 @@
 		font-family: system-ui, sans-serif;
 		background-color: #F6F6F6;
 	}
+  code {
+    padding: 0.3em 0.45em;
+    color: rgb(var(--accent));
+		background: rgb(var(--accent) / 0.12);
+    border-radius: 4px;
+		font-size: 0.875em;
+		font-weight: bold;
+		font-family: MonoLisa, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+
+  h3 { font-size: 1.2rem; }
+  strong { color: rgb(var(--accent)); }
+
+  ul, ol {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin: 0;
+    padding-left: 1.25em;
+  }
+  ul { list-style-type: disc; }
+  ol { list-style-type: decimal; }
+
+  li::marker {
+    color: rgb(var(--accent));
+    font-weight: 600;
+  }
 }
