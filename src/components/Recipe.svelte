@@ -1,15 +1,20 @@
-<script>
+<script lang="ts">
   import Block from "./Block.svelte"
   export let recipe = ""
 
-  const ingredientsRegex = /^((\d\/\d)|\d)\s([\D|\s]|\d{2}\.\d)+/gm
-  const instructionsRegex = /(\d\.\s([\w|\s|,|-|\(|\)]+\.))/gm
+  function getTextBetween(text: string, from: string, to: string = "") {
+    const fromIndex = text.indexOf(from)
+    const toIndex = to !== "" ? text.indexOf(to) : text.length
+    return text.substring(fromIndex + from.length, toIndex)
+  }
 
-  $: ingredients = recipe
-    .match(ingredientsRegex)
-    .map((t) => t.replace("\n", "").replace(/\n.+\n/, ""))
-  $: instructions = recipe
-    .match(instructionsRegex)
+  $: ingredients = getTextBetween(recipe, "Ingredients", "Instructions")
+    .split("\n")
+    .filter((t) => t !== "")
+
+  $: instructions = getTextBetween(recipe, "Instructions")
+    .split("\n")
+    .filter((t) => t !== "")
     .map((t) => t.replace(/\d\.\s/, ""))
 </script>
 
